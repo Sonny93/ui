@@ -1,5 +1,3 @@
 node_modules
 dist
-
-#storybook build directory
-storybook-static
+coverage

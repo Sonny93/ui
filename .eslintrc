@@ -23,7 +23,6 @@
     "prettier", // Prettier rules
     "plugin:prettier/recommended", // Prettier plugin integration
     "plugin:react-hooks/recommended", // Recommended rules for React hooks
-    "plugin:storybook/recommended", // Recommended rules for Storybook
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
