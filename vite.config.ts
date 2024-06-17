@@ -1,10 +1,11 @@
 /// <reference types="vitest" />
 
 import react from '@vitejs/plugin-react-swc';
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import { name, dependencies } from './package.json';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { dependencies, name } from './package.json';
 
 export default defineConfig({
   build: {
@@ -25,7 +26,7 @@ export default defineConfig({
     sourcemap: true,
     emptyOutDir: true,
   },
-  plugins: [react(), dts({ rollupTypes: true })],
+  plugins: [react(), dts({ rollupTypes: true }), tsconfigPaths()],
   test: {
     globals: true,
     environment: 'jsdom',
