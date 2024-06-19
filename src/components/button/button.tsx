@@ -1,5 +1,8 @@
 import emotionStyled from '@emotion/styled';
-import { PropsWithChildren, useEffect } from 'react';
+import { ButtonHTMLAttributes, PropsWithChildren, useEffect } from 'react';
+
+export type ButtonProps = { test?: string } & PropsWithChildren &
+  ButtonHTMLAttributes<HTMLButtonElement>;
 
 const StyledButton = emotionStyled.button({
   color: 'red',
@@ -10,12 +13,13 @@ const StyledButton = emotionStyled.button({
 export default function Button({
   test = 'oui',
   children,
+  ...props
 }: { test?: string } & PropsWithChildren) {
   useEffect(() => {
-    console.log('oui');
-  }, []);
+    console.log(test);
+  }, [test]);
   return (
-    <StyledButton>
+    <StyledButton {...props}>
       {children} {test && test}
     </StyledButton>
   );
