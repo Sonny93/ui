@@ -1,6 +1,5 @@
 import { Theme } from '@emotion/react';
 import { rgba } from '~/lib/colors';
-import { border } from '~/styles/border';
 import {
   darkBlue,
   darkestBlue,
@@ -8,38 +7,30 @@ import {
   lightRed,
   lightestBlue,
 } from '~/styles/common_colors';
-import { media } from '~/styles/media_queries';
-import { transition } from '~/styles/transition';
 
-export const darkTheme: Theme = {
-  colors: {
-    font: '#f0eef6',
-    background: '#222831',
-    primary: '#4fadfc',
-    secondary: '#323a47',
+export const darkThemeColors: Theme['colors'] = {
+  font: '#f0eef6',
+  background: '#222831',
+  primary: '#4fadfc',
+  secondary: '#323a47',
 
-    black: '#333333',
-    white: '#ffffff',
+  black: '#333333',
+  white: '#ffffff',
 
-    lightGrey: '#323a47',
-    grey: '#aaaaaa',
+  lightGrey: '#323a47',
+  grey: '#aaaaaa',
 
-    lightestBlue,
-    lightBlue,
-    blue: '#4fadfc',
-    darkBlue,
-    darkestBlue,
+  lightestBlue,
+  lightBlue,
+  blue: '#4fadfc',
+  darkBlue,
+  darkestBlue,
 
-    green: '#09b909',
+  green: '#09b909',
 
-    lightRed,
+  lightRed,
 
-    yellow: '#ffc107',
+  yellow: '#ffc107',
 
-    boxShadow: `0 0 1em 0 ${rgba('#111', 0.4)}`,
-  },
-
-  border,
-  media,
-  transition,
+  boxShadow: `0 0 1em 0 ${rgba('#111', 0.4)}`,
 };

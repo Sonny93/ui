@@ -1,49 +1,18 @@
 import '@emotion/react';
+import { Borders } from '~/styles/border';
+import { FontSizes } from '~/styles/font_size';
+import { Medias } from '~/styles/media_queries';
+import { lightThemeColors } from '~/styles/themes/light_theme';
+import { Transitions } from '~/styles/transition';
+
+export type Colors = typeof lightThemeColors;
 
 declare module '@emotion/react' {
   export interface Theme extends theme {
-    colors: {
-      font: string;
-      background: string;
-      primary: string;
-      secondary: string;
-
-      black: string;
-      white: string;
-
-      lightGrey: string;
-      grey: string;
-
-      lightestBlue: string;
-      lightBlue: string;
-      blue: string;
-      darkBlue: string;
-      darkestBlue: string;
-
-      green: string;
-
-      lightRed: string;
-
-      yellow: string;
-
-      boxShadow: string;
-    };
-
-    border: {
-      radius: string;
-    };
-
-    media: {
-      mobile: string;
-      tablet: string;
-      small_desktop: string;
-      medium_desktop: string;
-      large_desktop: string;
-      xlarge_desktop: string;
-    };
-
-    transition: {
-      delay: string;
-    };
+    colors: Colors;
+    borders: Borders;
+    medias: Medias;
+    transitions: Transitions;
+    fontSizes: FontSizes;
   }
 }

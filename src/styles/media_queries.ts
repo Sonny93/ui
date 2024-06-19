@@ -1,6 +1,10 @@
-import { Theme } from '@emotion/react';
+import { ScreenType } from '~/types/theme_common';
 
-export const media: Theme['media'] = {
+export type Medias = {
+  [key in ScreenType]: string;
+};
+
+export const medias: Medias = {
   mobile: '768px',
   tablet: '1024px',
   small_desktop: '1280px',

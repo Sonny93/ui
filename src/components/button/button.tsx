@@ -12,13 +12,13 @@ const Button = emotionStyled.button<ButtonProps>(
       cursor: 'pointer',
       width: '100%',
       textTransform: 'uppercase',
-      fontSize: '14px',
+      fontSize: theme.fontSizes.m,
       color: theme.colors.white,
       background: btnColor,
       padding: '0.75em',
       border: `1px solid ${btnColor}`,
-      borderRadius: theme.border.radius,
-      transition: theme.transition.delay,
+      borderRadius: theme.borders.radius.m,
+      transition: theme.transitions.delay.normal,
 
       '&:disabled': {
         cursor: 'not-allowed',
