@@ -1,5 +1,8 @@
+import { ThemeProvider } from '@emotion/react';
 import { PropsWithChildren, createContext, useEffect, useState } from 'react';
 import { THEME_LS_KEY } from '~/constants/theme';
+import { darkTheme } from '~/styles/themes/dark_theme';
+import { lightTheme } from '~/styles/themes/light_theme';
 
 export const ThemeContext = createContext({
   isDarkTheme: true,
@@ -26,13 +29,15 @@ export default function ThemeContextProvider({
   }, [isDarkTheme]);
 
   return (
-    <ThemeContext.Provider
-      value={{
-        isDarkTheme,
-        toggleDarkTheme,
-      }}
-    >
-      {children}
-    </ThemeContext.Provider>
+    <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
+      <ThemeContext.Provider
+        value={{
+          isDarkTheme,
+          toggleDarkTheme,
+        }}
+      >
+        {children}
+      </ThemeContext.Provider>
+    </ThemeProvider>
   );
 }

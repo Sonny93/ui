@@ -1,26 +1,37 @@
 import emotionStyled from '@emotion/styled';
-import { ButtonHTMLAttributes, PropsWithChildren, useEffect } from 'react';
 
-export type ButtonProps = { test?: string } & PropsWithChildren &
-  ButtonHTMLAttributes<HTMLButtonElement>;
+export type ButtonProps = { danger?: boolean };
 
-const StyledButton = emotionStyled.button({
-  color: 'red',
-  backgroundColor: 'white',
-  border: '1px solid red',
-});
+const Button = emotionStyled.button<ButtonProps>(
+  ({ theme, danger = false }) => {
+    const btnColor = !danger ? theme.colors.primary : theme.colors.lightRed;
+    const btnDarkColor = !danger
+      ? theme.colors.darkBlue
+      : theme.colors.lightRed;
+    return {
+      cursor: 'pointer',
+      width: '100%',
+      textTransform: 'uppercase',
+      fontSize: '14px',
+      color: theme.colors.white,
+      background: btnColor,
+      padding: '0.75em',
+      border: `1px solid ${btnColor}`,
+      borderRadius: theme.border.radius,
+      transition: theme.transition.delay,
 
-export default function Button({
-  test = 'oui',
-  children,
-  ...props
-}: { test?: string } & PropsWithChildren) {
-  useEffect(() => {
-    console.log(test);
-  }, [test]);
-  return (
-    <StyledButton {...props}>
-      {children} {test && test}
-    </StyledButton>
-  );
-}
+      '&:disabled': {
+        cursor: 'not-allowed',
+        opacity: '0.5',
+      },
+
+      '&:not(:disabled):hover': {
+        boxShadow: `${btnDarkColor} 0 0 3px 1px`,
+        background: btnDarkColor,
+        color: theme.colors.white,
+      },
+    };
+  }
+);
+
+export default Button;

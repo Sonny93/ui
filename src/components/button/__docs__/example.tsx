@@ -1,7 +1,9 @@
-import { FC } from 'react';
+import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
 import Button, { ButtonProps } from '../button';
 
-const Example: FC<ButtonProps> = ({ test, children, ...props }) => (
+const Example: FC<
+  ButtonProps & PropsWithChildren & ButtonHTMLAttributes<HTMLButtonElement>
+> = (props) => (
   <div
     style={{
       display: 'flex',
@@ -10,9 +12,7 @@ const Example: FC<ButtonProps> = ({ test, children, ...props }) => (
       height: '100%',
     }}
   >
-    <Button test={test} {...props}>
-      {children}
-    </Button>
+    <Button {...props} />
   </div>
 );
 

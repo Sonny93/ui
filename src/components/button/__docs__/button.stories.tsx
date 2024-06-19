@@ -1,9 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import ThemeContextProvider from '~/contexts/ThemeContext';
 import Example from './example';
 
 const meta: Meta<typeof Example> = {
   title: 'Button',
   component: Example,
+  decorators: [
+    (Story) => (
+      <ThemeContextProvider preferDarkTheme={false}>
+        <Story />
+      </ThemeContextProvider>
+    ),
+  ],
 };
 
 export default meta;
@@ -11,15 +19,14 @@ type Story = StoryObj<typeof Example>;
 
 export const Primary: Story = {
   args: {
-    test: 'yes',
     children: 'haha',
     onClick: () => console.log('ze Button'),
   },
 };
-export const Secondary: Story = {
+export const Danger: Story = {
   args: {
-    test: 'no',
     children: 'hihi',
+    danger: true,
     onClick: () => console.log('la Button'),
   },
 };
