@@ -19,14 +19,60 @@ type Story = StoryObj<typeof Example>;
 
 export const Primary: Story = {
   args: {
-    children: 'haha',
-    onClick: () => console.log('ze Button'),
+    children: 'Primary',
   },
 };
+
 export const Danger: Story = {
   args: {
-    children: 'hihi',
+    children: 'Danger',
     danger: true,
-    onClick: () => console.log('la Button'),
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    children: 'Disabled',
+    disabled: true,
+  },
+};
+
+export const DangerDisabled: Story = {
+  args: {
+    children: 'Danger Disabled',
+    disabled: true,
+    danger: true,
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    children: 'Secondary',
+    secondary: true,
+  },
+};
+
+export const SecondaryDanger: Story = {
+  args: {
+    children: 'Secondary Danger',
+    secondary: true,
+    danger: true,
+  },
+};
+
+export const SecondaryDisabled: Story = {
+  args: {
+    children: 'Secondary Disabled',
+    disabled: true,
+    secondary: true,
+  },
+};
+
+export const SecondaryDisabledDanger: Story = {
+  args: {
+    children: 'Secondary Disabled Danger',
+    disabled: true,
+    secondary: true,
+    danger: true,
   },
 };

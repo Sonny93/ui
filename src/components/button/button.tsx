@@ -1,20 +1,24 @@
 import emotionStyled from '@emotion/styled';
 
-export type ButtonProps = { danger?: boolean };
+export type ButtonProps = { danger?: boolean; secondary?: boolean };
 
 const Button = emotionStyled.button<ButtonProps>(
-  ({ theme, danger = false }) => {
+  ({ theme, danger = false, secondary = false }) => {
     const btnColor = !danger ? theme.colors.primary : theme.colors.lightRed;
     const btnDarkColor = !danger
       ? theme.colors.darkBlue
       : theme.colors.lightRed;
+
+    const color = !secondary ? theme.colors.white : btnColor;
+    const background = !secondary ? btnColor : theme.colors.white;
+
     return {
       cursor: 'pointer',
       width: '100%',
       textTransform: 'uppercase',
       fontSize: theme.fontSizes.m,
-      color: theme.colors.white,
-      background: btnColor,
+      color,
+      background,
       padding: '0.75em',
       border: `1px solid ${btnColor}`,
       borderRadius: theme.borders.radius.m,
@@ -26,9 +30,7 @@ const Button = emotionStyled.button<ButtonProps>(
       },
 
       '&:not(:disabled):hover': {
-        boxShadow: `${btnDarkColor} 0 0 3px 1px`,
-        background: btnDarkColor,
-        color: theme.colors.white,
+        background: !secondary ? btnDarkColor : theme.colors.secondary,
       },
     };
   }
