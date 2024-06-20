@@ -1,7 +1,10 @@
 {
   "hooks": {
     "before:init": [
-      "npm run lint"
+      "pnpm format",
+      "pnpm lint",
+      "pnpm test:staged",
+      "pnpm coverage:staged"
     ]
   },
   "git": {

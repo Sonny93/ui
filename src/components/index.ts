@@ -1,1 +1,2 @@
-export * from './button'; // Add more exports for other components as needed
+export * from './button';
+export * from './text_ellipsis';
