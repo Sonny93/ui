@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ThemeContextProvider from '~/contexts/ThemeContext';
+import ThemeContextProvider from '~/contexts/theme_context';
 import Example from './example';
 
 const meta: Meta<typeof Example> = {

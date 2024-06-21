@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import ThemeContextProvider from '~/contexts/ThemeContext';
+import ThemeContextProvider from '~/contexts/theme_context';
 import Button from '../button';
 
 describe('Button component', () => {
