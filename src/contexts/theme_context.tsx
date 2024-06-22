@@ -5,13 +5,15 @@ import { baseTheme } from '~/styles/themes/base_theme';
 import { darkThemeColors } from '~/styles/themes/dark_theme';
 import { lightThemeColors } from '~/styles/themes/light_theme';
 
-export const ThemeContext = createContext({
+export { ThemeContext as _ThemeContext, ThemeContextProvider };
+
+const ThemeContext = createContext({
   isDarkTheme: true,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   toggleDarkTheme: (_value: boolean) => {},
 });
 
-export default function ThemeContextProvider({
+function ThemeContextProvider({
   preferDarkTheme,
   children,
   onPreferenceChange,
