@@ -6,7 +6,7 @@ import { Transitions } from '~/styles/transition';
 
 export type Colors = typeof lightThemeColors;
 
-export interface Theme extends theme {
+export interface UITheme {
   colors: Colors;
   borders: Borders;
   medias: Medias;
