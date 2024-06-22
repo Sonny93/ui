@@ -10,7 +10,7 @@ const Button = emotionStyled.button<ButtonProps>(
       : theme.colors.lightRed;
 
     const color = !secondary ? theme.colors.white : btnColor;
-    const background = !secondary ? btnColor : theme.colors.white;
+    const background = !secondary ? btnColor : 'transparent';
 
     return {
       cursor: 'pointer',
