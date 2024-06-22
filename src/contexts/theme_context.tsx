@@ -5,7 +5,7 @@ import { baseTheme } from '~/styles/themes/base_theme';
 import { darkThemeColors } from '~/styles/themes/dark_theme';
 import { lightThemeColors } from '~/styles/themes/light_theme';
 
-export { ThemeContext as _ThemeContext, ThemeContextProvider };
+export { ThemeContextProvider, ThemeContext as _ThemeContext };
 
 const ThemeContext = createContext({
   isDarkTheme: true,
@@ -14,11 +14,11 @@ const ThemeContext = createContext({
 });
 
 function ThemeContextProvider({
-  preferDarkTheme,
+  preferDarkTheme = true,
   children,
   onPreferenceChange,
 }: {
-  preferDarkTheme: boolean;
+  preferDarkTheme?: boolean;
   onPreferenceChange?: (isDarkTheme: boolean) => void;
 } & PropsWithChildren) {
   const [isDarkTheme, setDarkTheme] = useState<boolean>(preferDarkTheme);
