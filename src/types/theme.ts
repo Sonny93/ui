@@ -1,10 +1,32 @@
 import { Borders } from '~/styles/border';
 import { FontSizes } from '~/styles/font_size';
 import { Medias } from '~/styles/media_queries';
-import { lightThemeColors } from '~/styles/themes/light_theme';
 import { Transitions } from '~/styles/transition';
 
-export type Colors = typeof lightThemeColors;
+export type FadedColor = {
+  lightest: string;
+  light: string;
+  default: string;
+  dark: string;
+  darkest: string;
+};
+
+export type Colors = {
+  font: string;
+  background: string;
+  secondary: string;
+
+  black: string;
+  white: string;
+
+  grey: FadedColor;
+  blue: FadedColor;
+  green: FadedColor;
+  red: FadedColor;
+  yellow: FadedColor;
+
+  boxShadow: string;
+};
 
 export interface UITheme {
   colors: Colors;

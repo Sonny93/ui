@@ -1,36 +1,33 @@
-import { rgba } from '~/lib/colors';
-import {
-  darkBlue,
-  darkestBlue,
-  lightBlue,
-  lightRed,
-  lightestBlue,
-  primaryColor,
-} from '~/styles/common_colors';
+import { generateFadedColors, rgba } from '~/lib/colors';
+import { Colors } from '~/types';
 
-export const lightThemeColors = {
+export const lightThemeColors: Colors = {
   font: '#333',
   background: '#f0eef6',
-  primary: primaryColor,
   secondary: '#fff',
 
   black: '#333',
   white: '#ffffff',
 
-  lightGrey: '#dadce0',
-  grey: '#777777',
+  grey: generateFadedColors({
+    color: '#777777',
+  }),
 
-  lightestBlue,
-  lightBlue,
-  blue: primaryColor,
-  darkBlue,
-  darkestBlue,
+  blue: generateFadedColors({
+    color: '#3f88c5',
+  }),
 
-  green: 'green',
+  green: generateFadedColors({
+    color: 'green',
+  }),
 
-  lightRed,
+  red: generateFadedColors({
+    color: 'red',
+  }),
 
-  yellow: '#FF8A08',
+  yellow: generateFadedColors({
+    color: '#ffc107',
+  }),
 
   boxShadow: `0 0 1em 0 ${rgba('#aaa', 0.4)}`,
 };

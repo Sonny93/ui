@@ -1,36 +1,29 @@
-import { Theme } from '@emotion/react';
-import { rgba } from '~/lib/colors';
-import {
-  darkBlue,
-  darkestBlue,
-  lightBlue,
-  lightRed,
-  lightestBlue,
-} from '~/styles/common_colors';
+import { generateFadedColors, rgba } from '~/lib/colors';
+import { Colors } from '~/types';
 
-export const darkThemeColors: Theme['colors'] = {
+export const darkThemeColors: Colors = {
   font: '#f0eef6',
   background: '#222831',
-  primary: '#4fadfc',
   secondary: '#323a47',
 
   black: '#333333',
   white: '#ffffff',
 
-  lightGrey: '#323a47',
-  grey: '#aaaaaa',
+  grey: generateFadedColors({
+    color: '#aaaaaa',
+  }),
 
-  lightestBlue,
-  lightBlue,
-  blue: '#4fadfc',
-  darkBlue,
-  darkestBlue,
+  blue: generateFadedColors({
+    color: '#4fadfc',
+  }),
 
-  green: '#09b909',
+  green: generateFadedColors({
+    color: '#09b909',
+  }),
 
-  lightRed,
+  red: generateFadedColors({ color: 'red' }),
 
-  yellow: '#ffc107',
+  yellow: generateFadedColors({ color: '#ffc107' }),
 
   boxShadow: `0 0 1em 0 ${rgba('#111', 0.4)}`,
 };

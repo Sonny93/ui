@@ -1,19 +1,25 @@
-import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
+import { useTheme } from '@emotion/react';
+import { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 import Button, { ButtonProps } from '../button';
 
-const Example: FC<
-  ButtonProps & PropsWithChildren & ButtonHTMLAttributes<HTMLButtonElement>
-> = (props) => (
-  <div
-    style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '100%',
-    }}
-  >
-    <Button {...props} />
-  </div>
-);
-
-export default Example;
+export default function Example(
+  props: ButtonProps &
+    PropsWithChildren &
+    ButtonHTMLAttributes<HTMLButtonElement>
+) {
+  const { colors } = useTheme();
+  return (
+    <div
+      style={{
+        backgroundColor: colors.background,
+        padding: '1em',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+      }}
+    >
+      <Button {...props} />
+    </div>
+  );
+}
