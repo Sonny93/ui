@@ -51,7 +51,7 @@ function ThemeContextProvider({
   );
 }
 
-function StyleReset() {
+export function StyleReset() {
   const theme = useTheme();
   const cssReset = css({
     '*': {

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { PropsWithChildren } from 'react';
 import tinycolor from 'tinycolor2';
-import { ThemeContextProvider } from '~/contexts/theme_context';
 import { lightThemeColors } from '~/styles/themes/light_theme';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -39,9 +38,9 @@ const Box = ({ color }: { color: string }) => (
 const meta: Meta = {
   title: 'Theme',
   component: () => (
-    <Column>
+    <Column key={Date.now()}>
       {COLORS.map(([color, fades]) => (
-        <Row key={Date.now()}>
+        <Row key={color}>
           <div
             style={{
               height: '3em',
@@ -61,13 +60,6 @@ const meta: Meta = {
       ))}
     </Column>
   ),
-  decorators: [
-    (Story) => (
-      <ThemeContextProvider preferDarkTheme={false}>
-        <Story />
-      </ThemeContextProvider>
-    ),
-  ],
 };
 
 export default meta;
