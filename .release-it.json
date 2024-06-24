@@ -3,8 +3,7 @@
     "before:init": [
       "pnpm format",
       "pnpm lint",
-      "pnpm test:staged",
-      "pnpm coverage:staged"
+      "pnpm test:staged"
     ]
   },
   "git": {

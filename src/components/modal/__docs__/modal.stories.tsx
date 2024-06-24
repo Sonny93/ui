@@ -1,15 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Example from './example';
+import ExampleModal from '~/components/modal/__docs__/example';
+import Modal from '~/components/modal/modal';
 
-const meta: Meta<typeof Example> = {
+const meta: Meta<typeof Modal> = {
   title: 'Modal',
-  component: Example,
+  component: ExampleModal,
 };
 
 export default meta;
-type Story = StoryObj<typeof Example>;
+type Story = StoryObj<typeof Modal>;
 
-export const Title: Story = {
+export const Default: Story = {
   args: {
     title: 'Title enabled',
   },

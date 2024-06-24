@@ -8,6 +8,9 @@ import { darkThemeColors } from '../src/styles/themes/dark_theme';
 import { lightThemeColors } from '../src/styles/themes/light_theme';
 
 const preview: Preview = {
+  parameters: {
+    layout: 'centered',
+  },
   decorators: [
     withThemeFromJSXProvider({
       themes: {

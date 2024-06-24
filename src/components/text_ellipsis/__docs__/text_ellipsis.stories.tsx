@@ -1,13 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Example from './example';
+import TextEllipsis from '~/components/text_ellipsis/text_ellipsis';
 
-const meta: Meta<typeof Example> = {
+const meta: Meta<typeof TextEllipsis> = {
   title: 'Text Ellipsis',
-  component: Example,
+  component: (props) => (
+    <div style={{ width: '100px' }}>
+      <TextEllipsis {...props} />
+    </div>
+  ),
 };
 
 export default meta;
-type Story = StoryObj<typeof Example>;
+type Story = StoryObj<typeof TextEllipsis>;
 
 export const Default: Story = {
   args: {

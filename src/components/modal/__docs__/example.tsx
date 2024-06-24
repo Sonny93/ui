@@ -7,15 +7,7 @@ export default function ExampleModal(
 ) {
   const { toggle, isShowing, close } = useToggle();
   return (
-    <div
-      style={{
-        padding: '1em',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%',
-      }}
-    >
+    <div>
       <Button onClick={() => toggle()}>{props.title ?? 'Open modal'}</Button>
       <Modal close={close} opened={isShowing} {...props}>
         content

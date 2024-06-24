@@ -31,7 +31,6 @@
     "test-watch": "vitest",
     "test:ui": "vitest --ui",
     "test:staged": "vitest related --run",
-    "coverage:staged": "vitest related --coverage --run",
     "release": "release-it",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -55,7 +54,6 @@
     "@typescript-eslint/eslint-plugin": "^7.13.0",
     "@typescript-eslint/parser": "^7.13.0",
     "@vitejs/plugin-react-swc": "^3.7.0",
-    "@vitest/coverage-v8": "^1.6.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
@@ -91,8 +89,7 @@
     "*.{ts,tsx}": [
       "pnpm format",
       "pnpm lint",
-      "pnpm test:staged",
-      "pnpm coverage:staged"
+      "pnpm test:staged"
     ]
   },
   "volta": {
