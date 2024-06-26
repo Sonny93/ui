@@ -7,6 +7,8 @@ import { lightThemeColors } from '~/styles/themes/light_theme';
 
 export { ThemeContextProvider, ThemeContext as _ThemeContext };
 
+const DEFAULT_THEME_PREFERENCE = 'dark';
+
 const ThemeContext = createContext({
   isDarkTheme: true,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -14,14 +16,15 @@ const ThemeContext = createContext({
 });
 
 function ThemeContextProvider({
-  preferDarkTheme = true,
   children,
   onPreferenceChange,
 }: {
-  preferDarkTheme?: boolean;
   onPreferenceChange?: (isDarkTheme: boolean) => void;
 } & PropsWithChildren) {
-  const [isDarkTheme, setDarkTheme] = useState<boolean>(preferDarkTheme);
+  const [isDarkTheme, setDarkTheme] = useState<boolean>(() => {
+    const value = localStorage.getItem(THEME_LS_KEY);
+    return Boolean(value) ?? DEFAULT_THEME_PREFERENCE;
+  });
   const toggleDarkTheme = (value: boolean) => {
     setDarkTheme(value);
     onPreferenceChange?.(value);
