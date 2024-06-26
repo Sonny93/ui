@@ -7,9 +7,7 @@ describe('Button component', () => {
   it('Button should render correctly', () => {
     render(<Button />, {
       wrapper: ({ children }) => (
-        <ThemeContextProvider preferDarkTheme={true}>
-          {children}
-        </ThemeContextProvider>
+        <ThemeContextProvider>{children}</ThemeContextProvider>
       ),
     });
     const button = screen.getByRole('button');
