@@ -12,6 +12,7 @@ type Story = StoryObj<typeof Selector>;
 export const Default: Story = {
   args: {
     label: 'Selector',
+    value: 'value2',
     options: [
       {
         label: 'Value 1',

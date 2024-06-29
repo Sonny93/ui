@@ -1,13 +1,8 @@
 /** @jsxImportSource @emotion/react */
 
 import { useTheme } from '@emotion/react';
-import { InputHTMLAttributes, ReactNode } from 'react';
-import Select, {
-  FormatOptionLabelMeta,
-  GroupBase,
-  OptionsOrGroups,
-  PropsValue,
-} from 'react-select';
+import { InputHTMLAttributes, ReactNode, useState } from 'react';
+import Select, { FormatOptionLabelMeta } from 'react-select';
 import FormField from '~/components/form/form_field';
 
 type Option = { label: string | number; value: string | number };
@@ -15,9 +10,10 @@ type Option = { label: string | number; value: string | number };
 interface SelectorProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   label: string;
+  value: string | number;
   name: string;
   errors?: string[];
-  options: OptionsOrGroups<Option, GroupBase<Option>>;
+  options: Option[];
   onChangeCallback?: (value: number | string) => void;
   formatOptionLabel?: (
     data: Option,
@@ -28,6 +24,7 @@ interface SelectorProps
 export default function Selector({
   name,
   label,
+  value,
   options,
   onChangeCallback,
   formatOptionLabel,
@@ -35,8 +32,14 @@ export default function Selector({
   ...props
 }: SelectorProps): JSX.Element {
   const theme = useTheme();
-  const handleChange = (selectedOption: Option) =>
+  const [selectorValue, setSelectorValue] = useState<Option | null>(
+    () => options.find((option) => option.value === value) ?? null
+  );
+
+  const handleChange = (selectedOption: Option) => {
     onChangeCallback?.(selectedOption.value);
+    setSelectorValue(selectedOption);
+  };
 
   return (
     <FormField required={required}>
@@ -58,7 +61,7 @@ export default function Selector({
         }
         css={{ width: '100%', color: theme.colors.black }}
         className={props.className}
-        defaultValue={options[0] as PropsValue<Option>}
+        value={selectorValue}
       />
     </FormField>
   );
