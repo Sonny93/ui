@@ -1,11 +1,19 @@
 import styled from '@emotion/styled';
 
+export type FormFieldProps = {
+  required?: boolean;
+  inline?: boolean;
+  reverse?: boolean;
+};
+
 const FormField = styled('div', {
-  shouldForwardProp: (propName) => propName !== 'required',
-})<{ required?: boolean }>(({ required, theme }) => ({
+  shouldForwardProp: (propName) =>
+    propName !== 'required' && propName !== 'inline' && propName !== 'reverse',
+})<FormFieldProps>(({ theme, required, inline, reverse }) => ({
   display: 'flex',
   gap: '0.25em',
-  flexDirection: 'column',
+  alignItems: inline ? 'center' : 'flex-start',
+  flexDirection: `${inline ? 'row' : 'column'}${reverse ? '-reverse' : ''}`,
 
   '& label': {
     position: 'relative',

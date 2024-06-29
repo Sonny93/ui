@@ -1,11 +1,16 @@
+/** @jsxImportSource @emotion/react */
+
 import { ChangeEvent, Fragment, InputHTMLAttributes, useState } from 'react';
 import Toggle from 'react-toggle';
-import FormField from '~/components/form/form_field';
-import FormFieldError from '~/components/form/form_field_error';
 import 'react-toggle/style.css';
+import FormField, { FormFieldProps } from '~/components/form/form_field';
+import FormFieldError from '~/components/form/form_field_error';
 
 interface InputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+  extends Omit<
+    InputHTMLAttributes<HTMLInputElement> & FormFieldProps,
+    'onChange'
+  > {
   label: string;
   name: string;
   checked: boolean;
@@ -20,6 +25,8 @@ export default function Checkbox({
   errors = [],
   onChange,
   required = false,
+  reverse,
+  inline,
   ...props
 }: InputProps): JSX.Element {
   const [checkboxChecked, setCheckboxChecked] = useState<boolean>(checked);
@@ -34,10 +41,7 @@ export default function Checkbox({
   }
 
   return (
-    <FormField
-      css={{ alignItems: 'center', gap: '1em', flexDirection: 'row' }}
-      required={required}
-    >
+    <FormField inline={inline} reverse={reverse} required={required}>
       <label htmlFor={name} title={label}>
         {label}
       </label>
@@ -48,6 +52,7 @@ export default function Checkbox({
         placeholder={props.placeholder ?? 'Type something...'}
         name={name}
         id={name}
+        css={{ width: 'fit-content' }}
       />
       {errors.length > 0 &&
         errors.map((error) => (
