@@ -33,5 +33,5 @@
       },
     },
   },
-  "ignorePatterns": ["!.storybook"],
+  "ignorePatterns": ["node_modules", "storybook-static", ".storybook", "dist"],
 }

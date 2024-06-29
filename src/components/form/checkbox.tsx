@@ -2,6 +2,7 @@ import { ChangeEvent, Fragment, InputHTMLAttributes, useState } from 'react';
 import Toggle from 'react-toggle';
 import FormField from '~/components/form/form_field';
 import FormFieldError from '~/components/form/form_field_error';
+import 'react-toggle/style.css';
 
 interface InputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
