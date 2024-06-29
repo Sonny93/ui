@@ -25,7 +25,7 @@ function ThemeContextProvider({
   const toggleDarkTheme = (value: boolean) => {
     setDarkTheme(value);
     onPreferenceChange?.(value);
-    localStorage.setItem(THEME_LS_KEY, String(isDarkTheme));
+    localStorage.setItem(THEME_LS_KEY, String(value));
   };
 
   return (
