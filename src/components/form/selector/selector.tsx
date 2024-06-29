@@ -1,11 +1,12 @@
 /** @jsxImportSource @emotion/react */
 
 import { useTheme } from '@emotion/react';
-import { InputHTMLAttributes, ReactNode, useEffect, useState } from 'react';
+import { InputHTMLAttributes, ReactNode } from 'react';
 import Select, {
   FormatOptionLabelMeta,
   GroupBase,
   OptionsOrGroups,
+  PropsValue,
 } from 'react-select';
 import FormField from '~/components/form/form_field';
 
@@ -17,7 +18,6 @@ interface SelectorProps
   name: string;
   errors?: string[];
   options: OptionsOrGroups<Option, GroupBase<Option>>;
-  value: number | string;
   onChangeCallback?: (value: number | string) => void;
   formatOptionLabel?: (
     data: Option,
@@ -28,7 +28,6 @@ interface SelectorProps
 export default function Selector({
   name,
   label,
-  value,
   options,
   onChangeCallback,
   formatOptionLabel,
@@ -36,24 +35,8 @@ export default function Selector({
   ...props
 }: SelectorProps): JSX.Element {
   const theme = useTheme();
-  const [selectorValue, setSelectorValue] = useState<Option>();
-
-  useEffect(() => {
-    if (options.length === 0) return;
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const option = options.find((o: any) => o.value === value);
-    if (option) {
-      setSelectorValue(option as Option);
-    }
-  }, [options, value]);
-
-  const handleChange = (selectedOption: Option) => {
-    setSelectorValue(selectedOption);
-    if (onChangeCallback) {
-      onChangeCallback(selectedOption.value);
-    }
-  };
+  const handleChange = (selectedOption: Option) =>
+    onChangeCallback?.(selectedOption.value);
 
   return (
     <FormField required={required}>
@@ -62,8 +45,7 @@ export default function Selector({
           {label}
         </label>
       )}
-      <Select
-        value={selectorValue}
+      <Select<Option>
         onChange={(newValue) => handleChange(newValue as Option)}
         options={options}
         isDisabled={props.disabled}
@@ -74,7 +56,9 @@ export default function Selector({
                 formatOptionLabel(val, formatOptionLabelMeta)
             : undefined
         }
-        css={{ color: theme.colors.black }}
+        css={{ width: '100%', color: theme.colors.black }}
+        className={props.className}
+        defaultValue={options[0] as PropsValue<Option>}
       />
     </FormField>
   );
