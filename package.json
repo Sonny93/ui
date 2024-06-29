@@ -31,7 +31,7 @@
     "test-watch": "vitest",
     "test:ui": "vitest --ui",
     "test:staged": "vitest related --run",
-    "release": "release-it",
+    "release": "release-it --ci --only-version",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

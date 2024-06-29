@@ -7,10 +7,10 @@ import FormField from '~/components/form/form_field';
 
 type Option = { label: string | number; value: string | number };
 
-interface SelectorProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+interface SelectorProps<T>
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
   label: string;
-  value: string | number;
+  value: T;
   name: string;
   errors?: string[];
   options: Option[];
@@ -21,7 +21,7 @@ interface SelectorProps
   ) => ReactNode;
 }
 
-export default function Selector({
+export default function Selector<T = string | number>({
   name,
   label,
   value,
@@ -30,7 +30,7 @@ export default function Selector({
   formatOptionLabel,
   required = false,
   ...props
-}: SelectorProps): JSX.Element {
+}: SelectorProps<T>): JSX.Element {
   const theme = useTheme();
   const [selectorValue, setSelectorValue] = useState<Option | null>(
     () => options.find((option) => option.value === value) ?? null
