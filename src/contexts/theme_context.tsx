@@ -1,5 +1,5 @@
 import { Global, ThemeProvider, css, useTheme } from '@emotion/react';
-import { PropsWithChildren, createContext, useEffect, useState } from 'react';
+import { PropsWithChildren, createContext, useState } from 'react';
 import { THEME_LS_KEY } from '~/constants/theme';
 import { baseTheme } from '~/styles/themes/base_theme';
 import { darkThemeColors } from '~/styles/themes/dark_theme';
@@ -28,11 +28,8 @@ function ThemeContextProvider({
   const toggleDarkTheme = (value: boolean) => {
     setDarkTheme(value);
     onPreferenceChange?.(value);
-  };
-
-  useEffect(() => {
     localStorage.setItem(THEME_LS_KEY, String(isDarkTheme));
-  }, [isDarkTheme]);
+  };
 
   return (
     <ThemeProvider
