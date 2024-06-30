@@ -5,7 +5,7 @@ import { InputHTMLAttributes, ReactNode, useState } from 'react';
 import Select, { FormatOptionLabelMeta } from 'react-select';
 import FormField from '~/components/form/form_field';
 
-type Option = { label: string | number; value: string | number };
+type Option<T> = { label: string | number; value: T };
 
 interface SelectorProps<T>
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
@@ -13,11 +13,11 @@ interface SelectorProps<T>
   value: T;
   name: string;
   errors?: string[];
-  options: Option[];
-  onChangeCallback?: (value: number | string) => void;
+  options: Option<T>[];
+  onChangeCallback?: (value: T) => void;
   formatOptionLabel?: (
-    data: Option,
-    formatOptionLabelMeta: FormatOptionLabelMeta<Option>
+    data: Option<T>,
+    formatOptionLabelMeta: FormatOptionLabelMeta<Option<T>>
   ) => ReactNode;
 }
 
@@ -32,11 +32,11 @@ export default function Selector<T = string | number>({
   ...props
 }: SelectorProps<T>): JSX.Element {
   const theme = useTheme();
-  const [selectorValue, setSelectorValue] = useState<Option | null>(
+  const [selectorValue, setSelectorValue] = useState<Option<T> | null>(
     () => options.find((option) => option.value === value) ?? null
   );
 
-  const handleChange = (selectedOption: Option) => {
+  const handleChange = (selectedOption: Option<T>) => {
     onChangeCallback?.(selectedOption.value);
     setSelectorValue(selectedOption);
   };
@@ -48,8 +48,8 @@ export default function Selector<T = string | number>({
           {label}
         </label>
       )}
-      <Select<Option>
-        onChange={(newValue) => handleChange(newValue as Option)}
+      <Select<Option<T>>
+        onChange={(newValue) => handleChange(newValue as Option<T>)}
         options={options}
         isDisabled={props.disabled}
         menuPlacement="auto"
