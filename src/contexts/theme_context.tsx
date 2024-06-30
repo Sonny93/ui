@@ -1,6 +1,7 @@
 import { Global, ThemeProvider, css, useTheme } from '@emotion/react';
+import Cookie from 'js-cookie';
 import { PropsWithChildren, createContext, useState } from 'react';
-import { THEME_LS_KEY } from '~/constants/theme';
+import { DEFAULT_THEME_VALUE, THEME_COOKIE_NAME } from '~/constants/theme';
 import { baseTheme } from '~/styles/themes/base_theme';
 import { darkThemeColors } from '~/styles/themes/dark_theme';
 import { lightThemeColors } from '~/styles/themes/light_theme';
@@ -19,13 +20,17 @@ function ThemeContextProvider({
 }: {
   onPreferenceChange?: (isDarkTheme: boolean) => void;
 } & PropsWithChildren) {
-  const [isDarkTheme, setDarkTheme] = useState<boolean>(
-    () => localStorage.getItem(THEME_LS_KEY) === 'true'
-  );
+  const [isDarkTheme, setDarkTheme] = useState<boolean>(() => {
+    const cookie = Cookie.get(THEME_COOKIE_NAME);
+    if (!cookie) {
+      return DEFAULT_THEME_VALUE;
+    }
+    return cookie === 'true';
+  });
   const toggleDarkTheme = (value: boolean) => {
     setDarkTheme(value);
     onPreferenceChange?.(value);
-    localStorage.setItem(THEME_LS_KEY, String(value));
+    Cookie.set(THEME_COOKIE_NAME, String(value));
   };
 
   return (
